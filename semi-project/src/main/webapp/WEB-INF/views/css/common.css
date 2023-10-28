@@ -1,0 +1,37 @@
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+blockquote, body, dd, dl, dt, fieldset, figure, h1, h2, h3, h4, h5, h6, hr, html, iframe, legend, li, ol, p, pre, textarea, ul {margin:0;padding:0}
+h1, h2, h3, h4, h5, h6 {font-size:100%;font-weight:400}
+ul {list-style:none}
+button, input, select {margin:0}
+html {box-sizing:border-box}
+*, :after, :before {box-sizing:inherit}
+img, video {height:auto;max-width:100%}
+iframe {border:0}
+table {border-collapse:collapse;border-spacing:0}
+td, th {padding:0}
+
+/* 화면 꽉차게 쓰기 */
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+/* header, container, footer 크기 설정 */
+#header {
+	height: 50px;
+	background: #ddd;
+	position: relative;
+	z-index: 1;
+	width: auto;
+}
+#container {
+	min-height: 100%;
+	margin: -50px 0 -50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+	width: auto;
+}
+#footer {
+	height: 50px;
+	background: #ddd;
+}
