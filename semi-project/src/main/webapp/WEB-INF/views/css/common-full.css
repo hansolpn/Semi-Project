@@ -1,18 +1,25 @@
 @import url(minireset.css);
 
+/* 화면 꽉차게 쓰기 */
 html, body {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 /* header, container, footer 크기 설정 */
 #header {
 	height: 50px;
 	background: #ddd;
+	position: relative;
+	z-index: 1;
 	width: auto;
 }
 #container {
 	height: 100%;
+	min-height: 100%;
+	margin: -50px 0 -50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
 	width: auto;
 }
 #footer {
