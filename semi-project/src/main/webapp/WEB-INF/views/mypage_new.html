@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+	<section>
+        <!--Toggleable / Dynamic Tabs긁어옴-->
+        <div class="container">
+            <div class="myInfo">
+                <div class="titlebox">
+                    MyPage
+                </div>
+                
+                <ul class="nav nav-tabs tabs-style">
+                    <li class="active"><a data-toggle="tab" href="#info">내정보</a></li>
+                    <li><a data-toggle="tab" href="#myBoard">상권 분석 결과</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="info" class="tab-pane fade in active">
+
+                        <p>*표시는 필수 입력 표시입니다</p>
+                        <form method="post" name="userForm">
+                        <table class="table">
+                            <tbody class="m-control">
+                                <tr>
+                                    <td class="m-title">*ID</td>
+                                    <td><input class="form-control input-sm" name="userId" value="${login}" readonly></td>
+                                </tr>
+                                <tr>
+                                    <td class="m-title">*이름</td>
+                                    <td><input class="form-control input-sm" name="userName" value="${userInfo.userName}"></td>
+                                </tr>
+                                <tr>
+                                    <td class="m-title">비밀번호</td>
+                                    <td><input type="password" class="form-control input-sm" name="userPw">
+                                    <span id="msgPw"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="m-title">비밀번호확인</td>
+                                    <td><input type="password" class="form-control input-sm" name="userPwChk">
+                                        <span id="msgPw-c"></span></td>
+                                </tr>
+                                <tr>
+                                    <td class="m-title">E-mail</td>
+                                    <td>
+                                        <input class="form-control input-sm" name="userEmail1" value="${userInfo.userEmail1}">
+                                        <select class="form-control input-sm sel" name="userEmail2" id="userEmail2">
+                                            <option>@naver.com</option>
+                                            <option>@gmail.com</option>
+                                            <option>@daum.net</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="m-title">휴대폰</td>
+                                    <td>
+                                        <select class="form-control input-sm sel" name="userPhone1">
+                                            <option>010</option>
+                                            <option>011</option>
+                                            <option>017</option>
+                                            <option>018</option>
+                                        </select>
+                                        <input class="form-control input-sm" name="userPhone2" value="${userInfo.userPhone2}">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        </form>
+
+                        <div class="titlefoot">
+                            <button type="button" id="modifyBtn" class="btn btn-success">수정</button>
+                            <button type="button" id="mainBtn" class="btn">메인으로 가기</button>
+                        </div>
+                    </div>
+                    <!-- 첫번째 토글 끝 -->
+                    <!-- 두번째 토글 시작 -->
+                    <div id="myBoard" class="tab-pane fade">
+                        <p>*내 게시글 관리</p>
+                        <form>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td>번호</td>
+                                    <td>제목</td>
+                                    <td>작성일</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="b" items="${userInfo.userBoardList}">
+                                <tr>
+                                    <td>${b.bno}</td>
+                                    <td><a href="${pageContext.request.contextPath}/freeboard/content?bno=${b.bno}">${b.title}</a></td>
+                                    <td>${b.date}</td>
+                                </tr>
+                                </c:forEach>
+                                
+                            </tbody>
+                        </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
