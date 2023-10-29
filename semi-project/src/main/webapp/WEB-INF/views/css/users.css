@@ -45,13 +45,32 @@ button {
 /* 로그인 버튼 */
 #loginBtn.btn-login {
     margin-bottom: 15px;
-    background-color: red;
+    background-color: #71EAC5;
+}
+
+#loginBtn.btn-login:hover {
+    background-color: #5FC7A8;
+}
+
+#loginBtn.btn-login:active {
+    background-color: #4C9E85;
 }
 
 /* 가입 버튼 */
 #joinBtn.btn-join {
-    background-color: blue;
+    background-color: #387563;
+    color: #eee;
 }
+
+#joinBtn.btn-join:hover {
+    background-color: #2A5851;
+}
+
+#joinBtn.btn-join:active {
+    background-color: #254D41;
+}
+
+
 
 /* bootstrap */
 .form-group {
