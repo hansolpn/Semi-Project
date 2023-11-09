@@ -1,24 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 	<style>
-      div {
-        position: relative;
-        border: 20px solid gray;
-        width: 600px;
-        height: 400px;
-        margin: 200px auto;
-        padding: 30px auto;
-        top: 270px;
-        left: 250px;
+      #modal1,
+      #modal2,
+      #modal3 {
+        position: absolute;
+        /* border: 20px solid gray; */
+        width: 620px;
+        height: 390px;
+        /* margin: 200px auto; */
+        /* padding: 30px auto; */
+        top: 50px;
+        left: 50px;
+
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        margin: 20px auto;
+        max-width: 90%;
+
+        z-index: 100;
       }
-      h2 {
+      #modalTitle {
         width: 150px;
         margin-left: 30px;
+        margin-top: 16px;
+        margin-bottom: 16px;
+
+        color: #125688;
+        font-size: 24px;
       }
 
       #sel1,
@@ -27,12 +39,17 @@
         width: 180px;
         height: 48px;
         padding: 12px;
-        border-radius: 8px;
+        /* border-radius: 8px;
         border: 1px solid #000;
-        background: #fff;
+        background: #fff; */
         font-size: 18px;
         margin-left: 12px;
-        color: #424242;
+        /* color: #424242; */
+
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background: #f5f5f5;
+        color: #333;
       }
 
       .in1 {
@@ -40,6 +57,10 @@
         height: 40px;
         bottom: -250px;
         border-radius: 12px;
+
+        background: #125688;
+        color: #fff;
+        cursor: pointer;
       }
 
       .pri::-webkit-inner-spin-button {
@@ -59,10 +80,14 @@
         width: 300px;
         height: 40px;
         margin-bottom: 10px;
-        border-radius: 2px;
+        /* border-radius: 2px; */
         font-size: large;
+
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        color: #333;
       }
-      #price {
+      #deposit {
         text-align: right;
         padding-right: 40px;
         font-size: large;
@@ -70,12 +95,14 @@
 
       #modal3>p {
         width: 500px;
-        height: 84px;
+        height: 104px;
         margin: 10px auto 20px;
         padding: auto auto;
         border-radius: 2px;
         border: 10px solid rgb(224, 224, 224);
         background-color: rgb(224, 224, 224);
+
+        color: #333;
       }
 
       #res1,
@@ -88,12 +115,14 @@
         flex-shrink: 0;
         background-color: rgb(205, 203, 203);
         border: 0;
+        color: #333;
       }
 
       #res1:hover,
       #res2:hover,
       #res3:hover {
         background-color: rgb(102, 102, 102);
+        color: #fff;
       }
 
       #sub1,
@@ -105,59 +134,56 @@
         flex-shrink: 0;
         background-color: rgb(250, 229, 232);
         border: 0;
+        color: #333;
       }
 
       #sub1:hover,
       #sub2:hover,
       #sub3:hover {
         background-color: rgb(243, 128, 145);
+        color: #fff;
       }
 
       #modal1,
-      #modal2 {
+      #modal2,
+      #modal3 {
         display: none;
       }
-    </style>
+  </style>
 </head>
-<body>
-	<form action="${pageContext.request.contextPath}/semi" method="post">
-      <input id="adr" type="button" value="지역" />
-      <input id="sec" type="button" value="업종" />
+  <!--모달창 시작-->
+  <div id="modal1">
+    <h2 id="modalTitle">지역 선택</h2>
+    <select name="siDo" id="sel1" class="sel"></select>
+    <select name="siGunGu" id="sel2" class="sel"></select>
+    <select name="eupMyeongDong" id="sel3" class="sel"></select>
+    <input type="reset" value="취소" id="res1" class="in1" />
+    <input type="submit" value="확인" id="sub1" class="in1" />
+  </div>
 
-      <div id="modal1">
-        <h2>지역 선택</h2>
-        <select name="siDo" id="sel1" class="sel"></select>
-        <select name="siGunGu" id="sel2" class="sel"></select>
-        <select name="eupMyeongDong" id="sel3" class="sel"></select>
-        <input type="reset" value="취소" id="res1" class="in1" />
-        <input type="submit" value="확인" id="sub1" class="in1" />
-      </div>
+  <div id="modal2">
+    <h2 id="modalTitle">업종 선택</h2>
+    <select name="sec1st" id="sel1" class="sel"></select>
+    <select name="sec2nd" id="sel2" class="sel"></select>
+    <select name="sec3rd" id="sel3" class="sel"></select>
+    <input type="reset" value="취소" id="res2" class="in1" />
+    <input type="submit" value="확인" id="sub2" class="in1" />
+  </div>
 
-      <div id="modal2">
-        <h2>업종 선택</h2>
-        <select name="sec1st" id="sel1" class="sel"></select>
-        <select name="sec2nd" id="sel2" class="sel"></select>
-        <select name="sec3rd" id="sel3" class="sel"></select>
-        <input type="reset" value="취소" id="res2" class="in1" />
-        <input type="submit" value="확인" id="sub2" class="in1" />
-      </div>
-
-      <div id="modal3">
-        <h2>창업 비용</h2>
-        <p>
-          전세: 전세금 <br><br>
-          월세: 보증금+(월차임x100),<br>단 이 때 계산된 금액이 5천만원 미만일 경우: 보증금+(월차임x70)
-        </p>
-        <article id="price">
-          <input type="number" id="pri1" class="pri" placeholder="보증금" /> (원) <br>
-          <input type="number" id="pri2" class="pri" placeholder="월세" /> (원) <br>
-        </article>
-        <input type="reset" value="취소" id="res3" class="in1">
-        <input type="submit" value="확인" id="sub3" class="in1">
-      </div>
-    </form>
-  </body>
-
+  <div id="modal3">
+    <h2 id="modalTitle">창업 비용</h2>
+    <p>
+      전세: 전세금 <br><br>
+      월세: 보증금+(월차임x100),<br>단 이 때 계산된 금액이 5천만원 미만일 경우: 보증금+(월차임x70)
+    </p>
+    <article id="deposit">
+      <input type="number" id="pri1" class="pri" placeholder="보증금" /> (원) <br>
+      <input type="number" id="pri2" class="pri" placeholder="월세" /> (원) <br>
+    </article>
+    <input type="reset" value="취소" id="res3" class="in1">
+    <input type="submit" value="확인" id="sub3" class="in1">
+  </div>
+  <!--모달창 끝-->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script>
     // 지역
@@ -441,7 +467,7 @@
     });
 
     // 지역 버튼 이벤트 부여
-    document.getElementById('adr').onclick = () => {
+    document.getElementById('loc').onclick = () => {
       // 로그인 여부 판단
       // const id = document.getElementById('id').value;
       // const pw = document.getElementById('pw').value;
@@ -455,7 +481,7 @@
     };
 
     // 업종 버튼 이벤트 부여
-    document.getElementById('sec').onclick = () => {
+    document.getElementById('category').onclick = () => {
       // 로그인 여부 판단
       // const id = document.getElementById('id').value;
       // const pw = document.getElementById('pw').value;
@@ -468,6 +494,20 @@
       document.getElementById('modal2').style.display = 'block';
     };
 
+    // 가격 버튼 이벤트 부여
+    document.getElementById('price').onclick = () => {
+      // 로그인 여부 판단
+      // const id = document.getElementById('id').value;
+      // const pw = document.getElementById('pw').value;
+
+      // if (id === '' || pw === '') {
+      //   alert('로그인을 해주세요!');
+      //   return;
+      // }
+
+      document.getElementById('modal3').style.display = 'block';
+    };
+
     // 취소 버튼 이벤트 부여
     document.getElementById('res1').onclick = () => {
       document.getElementById('modal1').style.display = 'none';
@@ -478,6 +518,53 @@
     document.getElementById('res3').onclick = () => {
       document.getElementById('modal3').style.display = 'none';
     };
+
+    // 확인 버튼 이벤트 부여
+    document.getElementById('sub1').onclick = () => {
+      const $siDo = document.querySelector('select[name=siDo]');
+      const $siGunGu = document.querySelector('select[name=siGunGu]');
+      const $eupMyeongDong = document.querySelector('select[name=eupMyeongDong]');
+
+      const $siDoValue = $siDo.options[$siDo.selectedIndex].textContent;
+      const $siGunGuValue = $siGunGu.options[$siGunGu.selectedIndex].textContent;
+      const $eupMyeongDongValue = $eupMyeongDong.options[$eupMyeongDong.selectedIndex].textContent;
+
+      if ($siDoValue && $siGunGuValue && $eupMyeongDongValue) {
+        document.getElementById('p1').innerText = $siDoValue + ' ' + $siGunGuValue + ' ' + $eupMyeongDongValue;
+      }
+
+      document.getElementById('modal1').style.display = 'none';
+    };
+
+    document.getElementById('sub2').onclick = () => {
+      const $sec1st = document.querySelector('select[name=sec1st]');
+      const $sec2nd = document.querySelector('select[name=sec2nd]');
+      const $sec3rd = document.querySelector('select[name=sec3rd]');
+
+      const $sec1stValue = $sec1st.options[$sec1st.selectedIndex].textContent;
+      const $sec2ndValue = $sec2nd.options[$sec2nd.selectedIndex].textContent;
+      const $sec3rdValue = $sec3rd.options[$sec3rd.selectedIndex].textContent;
+
+      if ($sec1stValue && $sec2ndValue && $sec3rdValue) {
+        document.getElementById('p2').innerText = $sec3rdValue;
+      }
+
+      document.getElementById('modal2').style.display = 'none';
+    };
+
+    document.getElementById('sub3').onclick = () => {
+      const $pri1 = document.getElementById('pri1').value;
+      const $pri2 = document.getElementById('pri2').value;
+
+      const $pri1st = $pri1.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+      const $pri2nd = $pri2.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+
+      if ($pri1st && $pri2nd) {
+        document.getElementById('p3').innerText = '보증금: ' + $pri1st + '원\n' + '월세: ' + $pri2nd + '원';
+      }
+
+      document.getElementById('modal3').style.display = 'none';
+    };
+
+    
   </script>
-</body>
-</html>

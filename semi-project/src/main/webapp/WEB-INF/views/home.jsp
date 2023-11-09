@@ -5,12 +5,12 @@ pageEncoding="UTF-8"%>
 <html lang="en">
   <head>
     <link
-      href="${pageContext.request.contextPath}/css/side.css"
+      href="${pageContext.request.contextPath}/css/main.css"
       rel="stylesheet"
       type="text/css"
     />
     <link
-      href="${pageContext.request.contextPath}/css/main.css"
+      href="${pageContext.request.contextPath}/css/side.css"
       rel="stylesheet"
       type="text/css"
     />
@@ -49,14 +49,17 @@ pageEncoding="UTF-8"%>
       <!--중간 세션 끝-->
 
       <!--사이드바 시작-->
-      <h2 id="dream">
-          고객님,<br />
-          어떤 창업을 꿈꾸시나요?
-        </h2>
+      
       <section id="content2">
+        <div class="sidebar">
+        <h2 id="dream">
+            고객님,<br />
+            어떤 창업을 꿈꾸시나요?
+        </h2>
         <%@ include file="./include/sidebar.jsp" %>
+      </div>
         <!--사이드바 끝-->
-
+        
         <!--메인 화면 지도 나타낼 곳-->
         <!--<div class="bodywrap">
           bodywrap
@@ -66,20 +69,11 @@ pageEncoding="UTF-8"%>
           ></div>
         </div>  -->
 
+        <!--메인 화면 지도 나타낼 곳-->
         <section id="content3">
-          <!-- <img
-            src="카카오맵.png"
-            style="width: 800px; height: 620px"
-          /> -->
-           <!-- 나재성이 만든 대충 테스트용 폼 -->
-          <form id="myForm" action="${pageContext.request.contextPath}/api/req/" method="GET">
-            <input type="input" name="h1" value="11110640" />
-            <input type="input" name="h2" value="I21201" />
-            <button type="button" id="checkBtn2">이건 소분류 포커스 벗어나면 할거</button>
-            <button type="submit" id="checkBtn">조회</button>
-          </form>
-        </div>
-        </section> 
+          <div id="map"></div>
+          <%@ include file="./include/modal.jsp" %>
+        </section>
         <!--메인 지도 끝-->
       </section>
 
